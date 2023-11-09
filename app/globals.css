@@ -1,0 +1,391 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "MS Sans Serif";
+  src: url('../public/fonts/ms-sans-serif-5.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 192, 192, 192;
+  /* Classic grey */
+  --background-end-rgb: 128, 128, 128;
+  /* Darker grey */
+  --button-bg-rgb: 0, 0, 128;
+  /* Blue */
+  --button-text-rgb: 255, 255, 255;
+  /* White */
+}
+
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  /* Align items horizontally center */
+  align-items: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background: linear-gradient(to bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+}
+
+input[type="text"],
+button {
+  border: 2px outset buttonface;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+}
+
+button {
+  background-color: rgb(var(--button-bg-rgb));
+  color: rgb(var(--button-text-rgb));
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
+  /* Evenly spaced along the vertical axis, with equal space around each item */
+  height: 100%;
+  /* Inherits 100% height from body and html */
+  padding: 20px;
+  /* optional: to add some padding around the items */
+  flex-direction: row;
+  /* Align children in a row instead of column */
+  align-items: center;
+  /* Align items vertically center */
+  gap: 5px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  /* This adds space between your input and button */
+}
+
+
+.win98-textbox {
+  padding: 1px;
+  background-color: #c0c0c0;
+  /* Standard window background color */
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  font-size: 16px;
+  /* Slightly smaller to match the standard look */
+  width: 500px;
+  /* Keep width as provided */
+  height: 300px;
+  /* Keep height as provided */
+  max-width: 800px;
+  max-height: 450px;
+  min-width: 300px;
+  /* Keep width as provided */
+  min-height: 200px;
+  /* Keep height as provided */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  /* Preserves spacing and line breaks */
+  overflow-y: auto;
+  /* Keep vertical scrollbar */
+  resize: both;
+  /* Keep resizable */
+  margin-left: 0;
+  /* No change to margins */
+  margin-top: 0;
+  /* No change to margins */
+
+  /* Classic Windows 98 3D border effect */
+  border-style: outset;
+  border-width: 2px;
+  border-color: #fff #555 #555 #fff;
+
+  /* Classic Windows 98 outer box shadow */
+  box-shadow:
+    2px 2px 0 #000,
+    /* Black shadow to the right and bottom for depth */
+    -2px -2px 0 #fff inset,
+    /* White inset shadow for top and left */
+    1px 1px 0 #000 inset;
+  /* Black inset shadow for bottom and right */
+
+}
+
+.win98-textbox-text {
+
+  /* margin-top: 10px; */
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /* Make the div editable */
+  resize: both;
+  overflow: auto;
+
+
+
+
+}
+
+html {
+  height: 100%;
+  background: linear-gradient(to bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+}
+
+.win98-navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #000080;
+  /* Dark blue, common in Windows 98 */
+  color: white;
+  display: flex;
+  /* Aligns the inner ul */
+  align-items: center;
+  /* Centers the ul vertically */
+  padding: 4px 0;
+}
+
+.win98-navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* Ensures the ul spans the width of the navbar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* No need for position: sticky here since .win98-navbar is already fixed */
+}
+
+.win98-navbar li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  /* Fixed height for each li */
+  padding: 5px;
+  /* Ensure that the content does not overflow the fixed height */
+  overflow: hidden;
+}
+
+/* Style for images within li */
+.win98-navbar li img {
+  max-height: 100%;
+  /* Ensure image doesn't exceed the li's height */
+  width: auto;
+  /* Maintain the aspect ratio */
+}
+
+.win98-navbar li a {
+  text-decoration: none;
+  color: white;
+  padding: 8px 16px;
+  display: flex;
+  /* Makes the anchor fill the li */
+  align-items: center;
+  /* Center content vertically */
+  justify-content: center;
+  /* Center content horizontally */
+  transition: background-color 0.3s;
+}
+
+.win98-navbar li a:hover,
+.win98-navbar li a:focus {
+  background-color: #1C56FB;
+  /* A lighter blue for the hover effect */
+}
+
+/* Additional styling to make it feel more like Windows 98 */
+.win98-navbar,
+.win98-navbar li a {
+  border-style: outset;
+  border-width: 2px;
+}
+
+.win98-navbar li a:active {
+  border-style: inset;
+  /* Mimic button press effect */
+}
+
+.flash-text {
+  /* Large, blocky text */
+  font-family: 'Press Start 2P', monospace;
+  font-size: 50px;
+  /* Adjust size as needed */
+  font-weight: bold;
+  /* Makes the text 'blocky' */
+  text-transform: uppercase;
+  /* Optional: makes the text blocky by using uppercase */
+  text-align: center;
+  /* Centers text in the div */
+
+  /* Flashing animation */
+  animation: flash 3s infinite;
+  /* 1s duration, infinite loop */
+}
+
+/* Define the keyframes for the flashing effect */
+@keyframes flash {
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  /* Fully visible at 0% and 50% of the animation */
+  25%,
+  75% {
+    opacity: 0;
+  }
+
+  /* Fully transparent at 25% and 75% of the animation */
+}
+
+.containerArrow {
+  text-align: center;
+  /* Center the text and arrow */
+  perspective: 1000px;
+  /* Add perspective to the 3D space */
+}
+
+.arrowText {
+  /* Your styles for "Don't Panic" text */
+  font-family: 'Press Start 2P', monospace;
+  font-size: 100px;
+  /* Adjust size as needed */
+  font-weight: bold;
+  /* Makes the text 'blocky' */
+  text-transform: uppercase;
+  /* Optional: makes the text blocky by using uppercase */
+  text-align: center;
+  /* Centers text in the div */
+}
+
+.arrow {
+  font-size: 200px;
+  /* Adjust size as needed */
+  animation: spin 3s linear infinite;
+  /* Adjust time as needed */
+  display: inline-block;
+  transform-origin: 50% 50%;
+  /* Ensures the arrow rotates around its center */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotateX(0) rotateY(0) rotateZ(0);
+  }
+
+  100% {
+    transform: rotateX(0) rotateY(360deg) rotateZ(0);
+  }
+}
+
+.userInfo {
+  font-family: 'MS Sans Serif', Arial, sans-serif;
+  top: 20%;
+  /* 20 pixels from the top */
+  left: 10%;
+  /* 20 pixels from the left */
+  padding: 1px;
+  /* Inner padding for the content */
+
+  background-color: #c0c0c0;
+  /* Typical Windows 95 light gray background */
+  border: 2px solid #000;
+  /* Black border */
+  box-shadow: 3px 3px 0 #000;
+  /* Simulate the Windows 95 3D effect with shadows */
+  font-size: 16px;
+  /* Font size for readability */
+  z-index: 1000;
+  /* Ensure it's above other content */
+}
+
+/* Style for the header title, if applicable */
+.userInfo>div:first-child {
+  font-weight: bold;
+  /* Make the user's name bold */
+  margin-bottom: 5px;
+  /* Space between the name and the conversation count */
+}
+
+.user-info-text {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+
+
+.titleBar {
+  position: sticky;
+  top: 0;
+  /* Stick to the top of the nearest scrolling ancestor */
+  background-color: #000080;
+  /* Dark blue color typical of title bars */
+  color: white;
+  /* White text */
+  padding: 2px 5px;
+  /* Padding inside the title bar */
+  display: flex;
+  /* Use flexbox for layout */
+  justify-content: space-between;
+  /* Space out elements */
+  align-items: center;
+  /* Align items vertically */
+  font-weight: bold;
+  /* Bold text for the title */
+
+}
+
+.closeButton {
+  color: #000;
+  /* Text color to match title bar */
+  background-color: #c0c0c0;
+  /* Background color to match the close button */
+  cursor: default;
+  /* Default cursor to indicate non-functionality */
+  margin-left: 4px;
+  /* Spacing from the title text */
+  padding: 0 4px;
+  /* Padding inside the close button */
+  font-size: 16px;
+  /* Size of the 'X' character */
+  font-weight: bold;
+  /* Bold font for the 'X' */
+  line-height: 1;
+  /* Align the 'X' to the center */
+  align-self: stretch;
+  /* Stretch to fill the height of the title bar */
+  display: flex;
+  /* Use flexbox to center the 'X' */
+  align-items: center;
+  /* Center the 'X' vertically */
+  justify-content: center;
+  /* Center the 'X' horizontally */
+  border: 1px solid #fff;
+  /* White border for the button */
+  box-shadow: 2px 2px 0 #000;
+  /* Drop shadow to the bottom and right */
+  user-select: none;
+  /* Prevent text selection of the 'X' */
+}
