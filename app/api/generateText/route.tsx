@@ -59,6 +59,8 @@ export async function POST(req: Request) {
     const input = data.input;
     const session = await getServerSession(authOptions);
     const userEmail = session?.user?.email!;
+    const userID = (session?.user as any).id
+    console.log(userID)
 
     // const userEmail = session.user.email;
     if (!userEmail) {
