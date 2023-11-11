@@ -23,10 +23,10 @@ export default async function Page() {
         )
     }
     else {
-        const currentUserEmail = session?.user?.email!;
+        const currentUserId = (session?.user as any).id
         
         const user = await prisma.user.findUnique({
-            where: { email: currentUserEmail },
+            where: { id: currentUserId },
         });
         
         return (

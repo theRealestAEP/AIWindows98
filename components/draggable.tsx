@@ -1,4 +1,3 @@
-// DraggableBox.tsx
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 
 interface DraggableBoxProps {
@@ -6,29 +5,25 @@ interface DraggableBoxProps {
     x: number;
     y: number;
     onDrag: (newX: number, newY: number) => void;
+    isResizable: boolean;
 }
 
-const DraggableBox: React.FC<DraggableBoxProps> = ({ children, x, y, onDrag }) => {
+const DraggableBox: React.FC<DraggableBoxProps> = ({ children, x, y, onDrag, isResizable }) => {
+    const [size, setSize] = useState({ width: 200, height: 200 });
     const ref = useRef<HTMLDivElement>(null);
-    const mouseDownRef = useRef<{ x: number; y: number }>();
+    const mouseDownRef = useRef<{ x: number; y: number, type: 'drag' | 'resize' }>();
 
-    const isPartOf = (target: HTMLElement, className: string): boolean => {
-        while (target && target !== ref.current) {
-            if (target.classList.contains(className)) {
-                return true;
-            }
-            target = target.parentNode as HTMLElement;
-        }
-        return false;
-    };
-
-
-    // This is the native event handler version without the `React` prefix on `MouseEvent`.
     const onMouseMove = useCallback((event: MouseEvent) => {
-        if (mouseDownRef.current) {
-            const newX = event.clientX - mouseDownRef.current.x;
-            const newY = event.clientY - mouseDownRef.current.y;
-            onDrag(newX, newY);
+        if (mouseDownRef.current && ref.current) {
+            if (mouseDownRef.current.type === 'drag') {
+                const newX = event.clientX - mouseDownRef.current.x;
+                const newY = event.clientY - mouseDownRef.current.y;
+                onDrag(newX, newY);
+            } else if (mouseDownRef.current.type === 'resize') {
+                const newWidth = Math.max(100, event.clientX - ref.current.getBoundingClientRect().left);
+                const newHeight = Math.max(100, event.clientY - ref.current.getBoundingClientRect().top);
+                setSize({ width: newWidth, height: newHeight });
+            }
         }
     }, [onDrag]);
 
@@ -38,61 +33,56 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({ children, x, y, onDrag }) =
         window.removeEventListener('mouseup', onMouseUp);
     }, [onMouseMove]);
 
-    // Original React event handler
-    const handleReactMouseDown = useCallback(
-        (event: React.MouseEvent<HTMLDivElement>) => {
-            const target = event.target as HTMLElement;
-            if (isPartOf(target, 'win98-textbox') ||
-                isPartOf(target, 'win98-textbox-text') ||
-                isPartOf(target, 'resize-handle')) {
-                return;
-            }
-
-            onMouseDown(event.nativeEvent);  // Pass the native event to the native handler
-        },
-        []
-    );
-
-    // This is a native event handler for `mousedown` event.
-    const onMouseDown = (event: MouseEvent) => {
+    const handleMouseDown = useCallback((event: MouseEvent, type: 'drag' | 'resize') => {
         if (ref.current) {
             const rect = ref.current.getBoundingClientRect();
             mouseDownRef.current = {
                 x: event.clientX - rect.left,
                 y: event.clientY - rect.top,
+                type,
             };
             window.addEventListener('mousemove', onMouseMove);
             window.addEventListener('mouseup', onMouseUp);
         }
-    };
+    }, [onMouseMove, onMouseUp]);
 
-    // Attach the event listener for mouse down and clean up on unmount using the native handler
-    useEffect(() => {
-        const currentRef = ref.current;
-        if (currentRef) {
-            currentRef.addEventListener('mousedown', onMouseDown);
-        }
-
-        return () => {
-            if (currentRef) {
-                currentRef.removeEventListener('mousedown', onMouseDown);
-            }
-        };
-    }, [onMouseDown]);
 
     return (
         <div
             ref={ref}
-            onMouseDown={handleReactMouseDown}
             style={{
                 position: 'absolute',
                 cursor: 'move',
                 left: `${x}px`,
                 top: `${y}px`,
-                // Add any additional style you may need
+                width: `${size.width}px`,
+                height: `${size.height}px`,
+                // resize: isResizable ? 'both' : 'none',
+                overflow: 'auto',
+                minHeight: isResizable ? '200px' : '10px',
+                minWidth: isResizable ? '300px' : '10px',
             }}
         >
-            {children}
+            <div style={{ width: '100%', height: '100%' }}>
+                {children}
+            </div>
+            {isResizable && (
+                <div
+                    onMouseDown={(e) => handleMouseDown(e.nativeEvent, 'resize')}
+                    style={{
+                        position: 'absolute',
+                        width: '20px',
+                        height: '20px',
+                        bottom: '0',
+                        right: '0',
+                        border: '3px solid grey',
+                        marginRight: '5px',
+                        marginBottom: '5px',
+                        cursor: 'nwse-resize',
+                        backgroundColor: 'lightgray', // Visible resize handle
+                    }}
+                />
+            )}
         </div>
     );
 };

@@ -90,12 +90,12 @@ button {
   font-family: 'MS Sans Serif', Arial, sans-serif;
   font-size: 16px;
   /* Slightly smaller to match the standard look */
-  width: 500px;
+  width: 100%;
   /* Keep width as provided */
-  height: 300px;
+  height: 100%;
   /* Keep height as provided */
-  max-width: 800px;
-  max-height: 450px;
+  max-width: 1000px;
+  max-height: 500px;
   min-width: 300px;
   /* Keep width as provided */
   min-height: 200px;
@@ -105,12 +105,9 @@ button {
   white-space: pre-wrap;
   /* Preserves spacing and line breaks */
   overflow-y: auto;
-  /* Keep vertical scrollbar */
-  resize: both;
-  /* Keep resizable */
   margin-left: 0;
-  /* No change to margins */
   margin-top: 0;
+
   /* No change to margins */
 
   /* Classic Windows 98 3D border effect */
@@ -130,18 +127,10 @@ button {
 }
 
 .win98-textbox-text {
-
-  /* margin-top: 10px; */
   padding-top: 10px;
+  padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 10px;
-  /* Make the div editable */
-  resize: both;
-  overflow: auto;
-
-
-
-
 }
 
 html {

@@ -7,7 +7,9 @@ export default function GenerateSearch({ user }: any) {
     const [result, setResult] = useState(null);
     const [isLoading, setIsLoading] = useState(false);  // State to keep track of loading
     const [userInfoPosition, setUserInfoPosition] = useState({ x: 10, y: 20 });
-    const [resultPosition, setResultPosition] = useState({ x: 200, y: 200 });
+    const [resultPosition, setResultPosition] = useState({ x: 800, y: 200 });
+    const [userConversationCount, setUserConversationCount] = useState(user.conversationCount);
+    // const [isResizing, setIsResizing] = useState(false); // New state to track resizing
 
     const handleUserInfoDrag = (newX: number, newY: number) => {
         setUserInfoPosition({ x: newX, y: newY });
@@ -17,10 +19,20 @@ export default function GenerateSearch({ user }: any) {
         setResultPosition({ x: newX, y: newY });
     };
 
+    // const handleResizeStart = () => {
+    //     setIsResizing(true);
+    // };
+
+    // const handleResizeEnd = () => {
+    //     setIsResizing(false);
+    // };
+
+
+
 
     async function handleButtonClick() {
 
-        console.log('handleButtonClick');
+        // console.log('handleButtonClick');
         setIsLoading(true);  // Start loading
         try {
             const response = await fetch('/api/generateText', {
@@ -28,7 +40,7 @@ export default function GenerateSearch({ user }: any) {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ input: `${user?.name} said: ${inputText}` }),
             });
-
+            
             if (!response.ok) {
                 console.error('Network response was not ok', response);
                 return;
@@ -40,6 +52,7 @@ export default function GenerateSearch({ user }: any) {
         } catch (error) {
             console.error('Error fetching data: ', error);
         } finally {
+            setUserConversationCount(userConversationCount+1)
             setIsLoading(false);  // Stop loading regardless of the result
         }
     }
@@ -56,6 +69,7 @@ export default function GenerateSearch({ user }: any) {
                     x={userInfoPosition.x}
                     y={userInfoPosition.y}
                     onDrag={handleUserInfoDrag}
+                    isResizable={false} // Pass the isResizing state
                 >
                     <div className='userInfo'>
                         <div className='titleBar'>You
@@ -63,7 +77,7 @@ export default function GenerateSearch({ user }: any) {
                         </div>
                         <div className='user-info-text'>
                             <div>{user?.name ?? 'No Name'}</div>
-                            <div>Searches: {user?.conversationCount ?? ''}</div>
+                            <div>Searches: {userConversationCount}</div>
                         </div>
                     </div>
                 </DraggableBox>
@@ -82,22 +96,23 @@ export default function GenerateSearch({ user }: any) {
                         <img src="/loadingAnimation.gif" alt="Loading..." />
                     </div>
                 ) : result && (
-                    <div   onMouseDown={(e) => e.stopPropagation()}>
+                    <div>
                         <DraggableBox
                             x={resultPosition.x}
                             y={resultPosition.y}
                             onDrag={handleResultDrag}
+                            isResizable={true} // Pass the isResizing state
                         >
-                            <div className='win98-textbox'>
-                                <div className='titleBar'>The Answer
-                                    <div className='closeButton'>X</div>
+                                <div className='win98-textbox'>
+                                    <div className='titleBar'>The Answer
+                                        <div className='closeButton'>X</div>
+                                    </div>
+                                    {/* Resizable handle implementation */}
+                                    <div className='win98-textbox-text'>
+                                        {result}
+                                    </div>
                                 </div>
-                                <div className='win98-textbox-text'>
-
-                                    {result}
-
-                                </div>
-                            </div>
+  
                         </DraggableBox>
                     </div>
                 )}

@@ -71,7 +71,7 @@ export async function POST(req: Request) {
 
     // Fetch the user including their monthly search limit and conversation count this month
     const user = await prisma.user.findUnique({
-        where: { email: userEmail },
+        where: { id: userID },
     });
 
     const conversationsThisMonth = await prisma.conversation.count({
@@ -83,7 +83,7 @@ export async function POST(req: Request) {
         },
     });
 
-    console.log(conversationsThisMonth)
+    // console.log(conversationsThisMonth)
 
 
     if (conversationsThisMonth >= user?.monthlySearchLimit!) {
@@ -99,14 +99,14 @@ export async function POST(req: Request) {
     await prisma.$transaction([
         prisma.conversation.create({
             data: {
-                user: { connect: { email: userEmail } },
+                user: { connect: { id: userID } },
                 question: input,
                 answer: result,
                 timestamp: new Date(),
             },
         }),
         prisma.user.update({
-            where: { email: userEmail },
+            where: { id: userID },
             data: {
                 conversationCount: { increment: 1 },
             },
