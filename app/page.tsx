@@ -2,21 +2,29 @@ import { getServerSession } from 'next-auth';
 import GenerateSearch from '../components/generateSearch'
 import { authOptions } from './api/auth/[...nextauth]/route';
 import { prisma } from '@/lib/primsa'
+import PastSearches from '../components/userItems'
+import Desktop from '@/components/Desktop';
+import AboutMe from '../components/aboutMe';
 
 export default async function Page() {
     const session = await getServerSession(authOptions);
-    console.log(session)
+    // console.log(session)
 
     if (!session) {
+        const user = {
+            id: '0',
+            name: 'Guest',
+            email: ''
+        }
         return (
-            <div className="container">
+            <div>
+                <AboutMe />
+                <div className="flash-text">
+                    Login to the playground
+                </div>
+
                 <div>
-                    <div className="flash-text">
-                        DON'T PANIC
-                    </div>
-                    <div className='containerArrow'>
-                        <div className="arrow">&#x2193;</div>
-                    </div>
+                    <Desktop user={user} />
                 </div>
             </div>
 
@@ -24,14 +32,18 @@ export default async function Page() {
     }
     else {
         const currentUserId = (session?.user as any).id
-        
+
         const user = await prisma.user.findUnique({
             where: { id: currentUserId },
         });
-        
+        // console.log(user)
+
         return (
-            <div className="container">
-                <GenerateSearch user={user} />
+
+            <div>
+                {/* <GenerateSearch user={user} />
+                <PastSearches user={user} /> */}
+                <Desktop user={user} />
             </div>
         )
     }

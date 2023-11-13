@@ -16,7 +16,7 @@ function startOfCurrentMonth(): Date {
 }
 
 async function generateText(input: string): Promise<string> {
-    console.log(input)
+    // console.log(input)
     try {
 
         const chatCompletion = await openai.chat.completions.create({
@@ -53,14 +53,14 @@ export async function POST(req: Request) {
         NextResponse.json({ error: 'Bad Request' }, { status: 400 })
         return;
     }
-    console.log(req.body);
+    // console.log(req.body);
 
     const data = await req.json();
     const input = data.input;
     const session = await getServerSession(authOptions);
     const userEmail = session?.user?.email!;
     const userID = (session?.user as any).id
-    console.log(userID)
+    // console.log(userID)
 
     // const userEmail = session.user.email;
     if (!userEmail) {
@@ -87,10 +87,7 @@ export async function POST(req: Request) {
 
 
     if (conversationsThisMonth >= user?.monthlySearchLimit!) {
-        return new NextResponse(JSON.stringify({ error: 'Monthly limit reached' }), {
-            status: 429,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        return NextResponse.json({ error: 'Monthly Limit Reached' }, { status: 429 })
     }
 
     const result = await generateText(input);

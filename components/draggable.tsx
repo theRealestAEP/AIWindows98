@@ -1,17 +1,31 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
+import { useZIndex } from './zIndexContext';
 
 interface DraggableBoxProps {
     children: React.ReactNode;
     x: number;
     y: number;
+    height: number;
+    width: number;
     onDrag: (newX: number, newY: number) => void;
     isResizable: boolean;
+    maxChildHeight?: number;
+    maxChildWidth?: number;
+    
 }
 
-const DraggableBox: React.FC<DraggableBoxProps> = ({ children, x, y, onDrag, isResizable }) => {
-    const [size, setSize] = useState({ width: 200, height: 200 });
+const DraggableBox: React.FC<DraggableBoxProps> = ({ children,  height, width, x, y, onDrag, isResizable, maxChildHeight, maxChildWidth }) => {
+    const [size, setSize] = useState({ width: width, height: height });
     const ref = useRef<HTMLDivElement>(null);
     const mouseDownRef = useRef<{ x: number; y: number, type: 'drag' | 'resize' }>();
+
+    const { bringToFront } = useZIndex();
+    const [zIndex, setZIndex] = useState(0); // Default zIndex value
+    const bringBoxToFront = useCallback(() => {
+        const newZIndex = bringToFront();
+        setZIndex(newZIndex);
+      }, [bringToFront]);
+    
 
     const onMouseMove = useCallback((event: MouseEvent) => {
         if (mouseDownRef.current && ref.current) {
@@ -26,6 +40,7 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({ children, x, y, onDrag, isR
             }
         }
     }, [onDrag]);
+
 
     const onMouseUp = useCallback(() => {
         mouseDownRef.current = undefined;
@@ -46,41 +61,57 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({ children, x, y, onDrag, isR
         }
     }, [onMouseMove, onMouseUp]);
 
+    const handleMouseDownDrag = useCallback((event: React.MouseEvent) => {
+        bringToFront();
+        handleMouseDown(event.nativeEvent, 'drag');
+    }, [handleMouseDown]);
+
+
+
 
     return (
         <div
+            onMouseDown={bringBoxToFront} 
             ref={ref}
             style={{
                 position: 'absolute',
-                cursor: 'move',
                 left: `${x}px`,
                 top: `${y}px`,
                 width: `${size.width}px`,
                 height: `${size.height}px`,
-                // resize: isResizable ? 'both' : 'none',
-                overflow: 'auto',
-                minHeight: isResizable ? '200px' : '10px',
-                minWidth: isResizable ? '300px' : '10px',
+                minHeight: isResizable ? '200px' : '5px',
+                minWidth: isResizable ? '300px' : '5px',
+                resize: isResizable ? 'both' : 'none',
+                maxHeight: maxChildHeight ? maxChildHeight : 'none',
+                maxWidth: maxChildWidth ? maxChildWidth : 'none',
+                zIndex:zIndex,
+                // overflow: 'auto',
             }}
         >
-            <div style={{ width: '100%', height: '100%' }}>
+            <div onMouseDown={handleMouseDownDrag} style={{ width: '100%', height: '100%' }}>
                 {children}
             </div>
             {isResizable && (
                 <div
-                    onMouseDown={(e) => handleMouseDown(e.nativeEvent, 'resize')}
+                    onMouseDown={(e) => {
+                        setZIndex(bringToFront());
+                        handleMouseDown(e.nativeEvent, 'resize');
+                    }}
                     style={{
                         position: 'absolute',
+                        backgroundImage: 'url("/cornericon.png")', // Correct the path and use `url()`
+                        backgroundPosition: 'bottom right', // Position the background image at the bottom right
+                        backgroundSize: 'cover', // Cover the entire area of the element
                         width: '20px',
                         height: '20px',
                         bottom: '0',
                         right: '0',
-                        border: '3px solid grey',
-                        marginRight: '5px',
-                        marginBottom: '5px',
+                        border: '1px solid grey',
+                        marginRight: '1px',
+                        marginBottom: '1px',
                         cursor: 'nwse-resize',
-                        backgroundColor: 'lightgray', // Visible resize handle
-                    }}
+                        // backgroundColor: 'lightslategrey'
+                      }}
                 />
             )}
         </div>

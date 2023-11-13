@@ -40,7 +40,8 @@ body {
   align-items: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background: linear-gradient(to bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb)));
+  /* background: linear-gradient(to bottom, rgb(var(--background-start-rgb)), rgb(var(--background-end-rgb))); */
+  background-color: #008080;
 }
 
 input[type="text"],
@@ -107,7 +108,6 @@ button {
   overflow-y: auto;
   margin-left: 0;
   margin-top: 0;
-
   /* No change to margins */
 
   /* Classic Windows 98 3D border effect */
@@ -127,10 +127,26 @@ button {
 }
 
 .win98-textbox-text {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+
+  box-sizing: border-box;
+  /* Include padding and border in the element's width and height */
+  padding-left: 15px;
+  /* Adjust padding as needed */
+  padding-right: 15px;
+  /* Adjust padding as needed */
+  margin: 5px;
+  /* Adjust margin as needed */
+  word-wrap: break-word;
+  /* Break words to prevent overflow */
+  overflow-y: auto;
+  /* Only vertical scrollbar */
+
+}
+
+.win98-textbox::after {
+  display: block;
+  width: 100%;
+  padding-bottom: 15px;
 }
 
 html {
@@ -143,14 +159,11 @@ html {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: #000080;
-  /* Dark blue, common in Windows 98 */
+  height: 40px;
+  background: #BDBEBD;
   color: white;
   display: flex;
-  /* Aligns the inner ul */
-  align-items: center;
-  /* Centers the ul vertically */
-  padding: 4px 0;
+  justify-content: left;
 }
 
 .win98-navbar ul {
@@ -158,10 +171,8 @@ html {
   margin: 0;
   padding: 0;
   width: 100%;
-  /* Ensures the ul spans the width of the navbar */
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: left;
   /* No need for position: sticky here since .win98-navbar is already fixed */
 }
 
@@ -169,9 +180,10 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60px;
+  height: 30px;
+  margin-left: 10px;
   /* Fixed height for each li */
-  padding: 5px;
+  /* padding: 5px; */
   /* Ensure that the content does not overflow the fixed height */
   overflow: hidden;
 }
@@ -187,19 +199,15 @@ html {
 .win98-navbar li a {
   text-decoration: none;
   color: white;
-  padding: 8px 16px;
   display: flex;
-  /* Makes the anchor fill the li */
   align-items: center;
-  /* Center content vertically */
   justify-content: center;
-  /* Center content horizontally */
   transition: background-color 0.3s;
 }
 
 .win98-navbar li a:hover,
 .win98-navbar li a:focus {
-  background-color: #1C56FB;
+  background-color: #C0C0C0;
   /* A lighter blue for the hover effect */
 }
 
@@ -377,4 +385,235 @@ html {
   /* Drop shadow to the bottom and right */
   user-select: none;
   /* Prevent text selection of the 'X' */
+}
+
+.closeButton:hover {
+  cursor: pointer;
+}
+
+.win98-explorer {
+  background-color: #c0c0c0;
+  /* Gray background */
+  font-family: 'MS Sans Serif', Geneva, sans-serif;
+  color: black;
+  border: 2px outset #000;
+  /* Border to mimic the Windows 98 window */
+}
+
+.win98-title-bar {
+  background-color: #000080;
+  /* Dark blue background for title bar */
+  color: white;
+  /* White text color */
+  padding: 3px 5px;
+  /* Padding inside title bar */
+  font-weight: bold;
+  /* Bold font for title */
+}
+
+.win98-menu-bar {
+  background-color: #c0c0c0;
+  /* Gray background for menu bar to match the window */
+  padding: 2px 0;
+  /* Some padding for the menu items */
+}
+
+.win98-menu-bar ul {
+  list-style: none;
+  /* Remove list bullet points */
+  padding: 0;
+  margin: 0;
+  display: flex;
+  /* Display menu items inline */
+}
+
+.win98-menu-bar li {
+  padding: 2px 10px;
+  /* Padding for each menu item */
+  cursor: default;
+  /* Default cursor for menu items */
+}
+
+.win98-window {
+  background-color: #c0c0c0;
+  border: 2px solid #000;
+  padding: 8px;
+  font-family: 'MS Sans Serif', Geneva, sans-serif;
+  max-width: 640px;
+  /* Adjust as per your layout */
+  max-height: 400px;
+  /* Adjust as per your layout */
+  margin: auto;
+
+}
+
+.win98-title-bar {
+  background-color: #000080;
+  color: white;
+  padding: 3px 6px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.win98-menu-bar {
+  background-color: #c0c0c0;
+  display: flex;
+  padding: 2px 0;
+}
+
+.win98-address-bar {
+  background-color: #ffffff;
+  padding: 2px 6px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.win98-explorer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 10px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #000;
+  overflow: auto;
+}
+
+.win98-folder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80px;
+  /* Adjust width as needed */
+  cursor: pointer !important;
+  /* Ensure the cursor is a pointer */
+  transition: background-color 0.2s;
+  /* Smooth transition for background color */
+}
+
+.win98-folder:hover {
+  background-color: #e0e0e0;
+  /* Change to desired hover background color */
+}
+
+.win98-folder-icon {
+  background-image: url('../public/windows98folder.png');
+  /* Replace with actual path */
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 80px;
+  /* Adjust size as needed */
+  height: 64px;
+  /* Adjust size as needed */
+}
+
+.win98-folder-label {
+  color: black;
+  font-size: 0.75rem;
+  margin-top: 4px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.win98-status-bar {
+  background-color: #c0c0c0;
+  color: black;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  border-top: 1px solid white;
+  /* Simulate inset effect */
+}
+
+.win98-status-bar-refresh {
+  cursor: pointer !important;
+}
+
+.win98-status-bar-refresh:hover {
+  background-color: #e0e0e0;
+  /* Change to desired hover background color */
+}
+
+.desktop {
+  position: absolute;
+  /* Position the desktop absolutely relative to its positioned ancestor */
+  top: 0;
+  /* Align to the top of the ancestor */
+  left: 0;
+  /* Align to the left of the ancestor */
+  display: flex;
+  /* Use flexbox to lay out children */
+  flex-direction: column;
+  /* Stack items vertically */
+  align-items: flex-start;
+  /* Align items to the left */
+  gap: 10px;
+  /* Space between the children */
+}
+
+.desktop-icon {
+  display: flex;
+  /* Use flexbox inside each icon for vertical layout */
+  flex-direction: column;
+  /* Stack items vertically */
+  align-items: center;
+  /* Center items horizontally */
+  font-size: 12px;
+  /* Smaller text */
+  width: 150px;
+  /* Fixed width */
+  padding: 5px;
+  /* Padding around the content */
+  box-sizing: border-box;
+  /* Padding included in width and height */
+  text-align: center;
+  /* Center the text horizontally */
+  color: white !important;
+}
+
+.desktop-icon:hover {
+  cursor: pointer;
+
+}
+
+.search-loading-image {
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  display: block;
+}
+
+.start-button {
+  /* background-image: url('../public/start.png');
+  background-repeat: no-repeat;
+  background-size: cover; */
+  max-width: 90px;
+  cursor: pointer;
+  /* Change mouse cursor to pointer */
+}
+
+.start-button:active {
+  border: 2px inset #000;
+  /* Inset border for pressed effect */
+  box-shadow: none;
+  /* Remove shadow when pressed */
+}
+
+.about-me {
+  display: flex;
+  flex-direction: column; /* Stack flex items vertically */
+  justify-content: center; /* Center vertically in the container */
+  align-items: center; /* Center horizontally in the container */
+  margin-right: 10px;
+  text-align: center;
+  height: 200px;
+  width: 200px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: white;
 }
