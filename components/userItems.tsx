@@ -1,10 +1,9 @@
 'use client';
 import { useEffect, useState } from 'react';
 import DraggableBox from './draggable';
-import { Anybody } from 'next/font/google';
 interface Conversation {
     question: string;
-    timestamp: string; // or Date, depending on how you're handling dates
+    timestamp: string;
     answer: string;
 }
 interface User {

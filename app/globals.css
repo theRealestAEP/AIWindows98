@@ -604,16 +604,22 @@ html {
 }
 
 .about-me {
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   display: flex;
-  flex-direction: column; /* Stack flex items vertically */
-  justify-content: center; /* Center vertically in the container */
-  align-items: center; /* Center horizontally in the container */
-  margin-right: 10px;
+  flex-direction: column;
+  justify-content: center; 
+  align-items: center; 
   text-align: center;
-  height: 200px;
-  width: 200px;
   position: fixed;
-  top: 0;
-  right: 0;
+  top: 75px;
+  right: 50px;
   color: white;
+  padding: 20px;
+  /* Remove fixed height and width, let content dictate size */
+  /* Set minimum values to ensure the background covers small content */
+  height: 400px; /* Adjust as needed */
+  width: 300px; /* Adjust as needed */
 }

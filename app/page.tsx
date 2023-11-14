@@ -39,8 +39,8 @@ export default async function Page() {
         // console.log(user)
 
         return (
-
             <div>
+            <AboutMe />
                 {/* <GenerateSearch user={user} />
                 <PastSearches user={user} /> */}
                 <Desktop user={user} />
