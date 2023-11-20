@@ -9,7 +9,7 @@ interface DesktopIconProps {
   const DesktopIcon: React.FC<DesktopIconProps> = ({ label, imageSrc, onClick }) => {
     return (
       <div onClick={onClick} className='desktop-icon'>
-        <Image src={imageSrc} alt={label} /> {/* Add this line */}
+        <Image src={imageSrc} alt={label} height={100} width={100}  /> {/* Add this line */}
         <div>{label}</div>
       </div>
     );
