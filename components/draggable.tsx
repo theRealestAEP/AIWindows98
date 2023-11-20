@@ -64,7 +64,7 @@ const DraggableBox: React.FC<DraggableBoxProps> = ({ children,  height, width, x
     const handleMouseDownDrag = useCallback((event: React.MouseEvent) => {
         bringToFront();
         handleMouseDown(event.nativeEvent, 'drag');
-    }, [handleMouseDown]);
+    }, [handleMouseDown, bringToFront]);
 
 
 
