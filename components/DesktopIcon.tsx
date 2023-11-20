@@ -4,10 +4,12 @@ interface DesktopIconProps {
     onClick: () => void;
   }
   
+  import Image from 'next/image';
+
   const DesktopIcon: React.FC<DesktopIconProps> = ({ label, imageSrc, onClick }) => {
     return (
       <div onClick={onClick} className='desktop-icon'>
-        <img src={imageSrc} alt={label} /> {/* Add this line */}
+        <Image src={imageSrc} alt={label} /> {/* Add this line */}
         <div>{label}</div>
       </div>
     );

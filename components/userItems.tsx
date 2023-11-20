@@ -113,7 +113,7 @@ export default function PastSearches({ user, onClose }: PastSearchesProps) {
         };
 
         fetchConversations();
-    }, [curPage]);
+    }, [curPage, user.id]);
 
     const formatDate = (timestamp: any) => {
         // Assuming timestamp is in a format that can be parsed by Date constructor

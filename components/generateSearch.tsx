@@ -1,6 +1,7 @@
 "use client";
 import { useState } from 'react';
 import DraggableBox from './draggable';
+import Image from 'next/image'
 
 interface User {
     name: string;
@@ -163,7 +164,7 @@ export default function GenerateSearch({ user, onClose }: PastSearchesProps) {
                                         <div className='closeButton' onClick={handleCloseResult}>X</div>
                                     </div>
                                     <div className='search-loading-image'>
-                                        <img src="/loadingAnimation.gif" alt="Loading..." />
+                                        <Image src="/loadingAnimation.gif" alt="Loading..." />
                                     </div>
                                 </div>
 

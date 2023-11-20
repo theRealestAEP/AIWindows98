@@ -1,7 +1,8 @@
+import Image from 'next/image';
 export default function StartButton(){
     return (
         <div className="start-button">
-            <img src="/start.png" alt="windows logo" />
+            <Image src="/start.png" alt="windows logo" />
         </div>
     )
 }
