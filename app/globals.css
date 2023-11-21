@@ -226,7 +226,7 @@ html {
 .flash-text {
   /* Large, blocky text */
   font-family: 'Press Start 2P', monospace;
-  font-size: 50px;
+  font-size: 20px;
   /* Adjust size as needed */
   font-weight: bold;
   /* Makes the text 'blocky' */
