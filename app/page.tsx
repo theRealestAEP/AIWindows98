@@ -1,8 +1,7 @@
 import { getServerSession } from 'next-auth';
-import GenerateSearch from '../components/generateSearch'
 import { authOptions } from './api/auth/[...nextauth]/route';
 import { prisma } from '@/lib/primsa'
-import PastSearches from '../components/userItems'
+import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 import Desktop from '@/components/Desktop';
 import AboutMe from '../components/aboutMe';
 
@@ -18,14 +17,17 @@ export default async function Page() {
         }
         return (
             <div>
-                <AboutMe />
-                <div className="flash-text">
-                    Login to the playground
-                </div>
+                <BrowserView>
+                    <AboutMe />
+                    <div className="flash-text">
+                        Login to the playground
+                    </div>
 
-                <div>
                     <Desktop user={user} />
-                </div>
+                </BrowserView>
+                <MobileView>
+                    <AboutMe />
+                </MobileView>
             </div>
 
         )
@@ -40,7 +42,7 @@ export default async function Page() {
 
         return (
             <div>
-            <AboutMe />
+                <AboutMe />
                 {/* <GenerateSearch user={user} />
                 <PastSearches user={user} /> */}
                 <Desktop user={user} />

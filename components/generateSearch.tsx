@@ -164,7 +164,7 @@ export default function GenerateSearch({ user, onClose }: PastSearchesProps) {
                                         <div className='closeButton' onClick={handleCloseResult}>X</div>
                                     </div>
                                     <div className='search-loading-image'>
-                                        <Image src="/loadingAnimation.gif" alt="Loading..." />
+                                        <Image src="/loadingAnimation.gif" height={200} width={200} alt="Loading..." />
                                     </div>
                                 </div>
 

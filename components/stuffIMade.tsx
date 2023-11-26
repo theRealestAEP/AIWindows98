@@ -19,6 +19,7 @@ interface StuffIMadeProps {
     onClose: () => void;
 }
 
+
 const stuffIMade = [
     {
         id: 1,
@@ -27,6 +28,25 @@ const stuffIMade = [
         x: 800,
         y: 200,
         isOpen: false,
+        icon: '/foodScanner.png'
+    },
+    {
+        id: 2,
+        title: "Dec Talk",
+        contentUrl: "https://dec-talk.com/",
+        x: 800,
+        y: 200,
+        isOpen: false,
+        icon: '/decTalkIcon.png'
+    },
+    {
+        id: 3,
+        title: "Tangia",
+        contentUrl: "https://tangia.co/",
+        x: 800,
+        y: 300,
+        isOpen: false,
+        icon: '/tangiaPixel.png'
     },
 ];
 
@@ -47,7 +67,7 @@ export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
     };
 
     const toggleWindow = (id: number) => {
-        setItems(currentItems => currentItems.map(item => 
+        setItems(currentItems => currentItems.map(item =>
             item.id === id ? { ...item, isOpen: !item.isOpen } : item
         ));
     };
@@ -57,10 +77,9 @@ export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
         if (onClose) onClose(); // If an onClose function is provided, call it
     };
 
-    const openIframe = () => {
-
-        return;
-    }
+    const openIframe = (url: string) => {
+        return <IframeComponent height={300} width={580} url={url} />;
+    };
 
     return (
         <>
@@ -102,7 +121,9 @@ export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
                                     className="win98-folder"
                                     onClick={() => toggleWindow(item.id)}
                                 >
-                                    <div className="win98-folder-icon"></div>
+                                    <div className="win98-stuffIMade-icon" 
+                                        style={{backgroundImage: `url(${item.icon})`}}
+                                    ></div>
                                     <div className="win98-folder-label">{item.title}</div>
                                 </div>
                             ))}
@@ -118,13 +139,28 @@ export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
                     key={item.id}
                     x={item.x}
                     y={item.y}
-                    height={100}
-                    width={600}
+                    height={600}
+                    width={800}
                     onDrag={(newX, newY) => handleDynamicDrag(item.id, newX, newY)}
                     isResizable={false}
                 >
-                    {/* Render content based on item properties */}
-                    {/* Include a close button or method to toggle isOpen */}
+                    <div className="win98-browser-window">
+
+                        <div className="win98-title-bar">
+                            <span className="win98-title-text">{item.title}</span>
+                            <div className='titleBar'>
+                                <button onClick={() => toggleWindow(item.id)} className="closeButton" >X</button>
+                            </div>
+                        </div>
+                        <div className="win98-browser-window-open">
+                            {/* Render content based on item properties */}
+                            {/* open an iframe box*/}
+                            {/* Include a close button or method to toggle isOpen */}
+                            {item.contentUrl && openIframe(item.contentUrl)}
+                            {/* <button onClick={() => toggleWindow(item.id)}>Close</button> */}
+                        </div>
+
+                    </div>
                 </DraggableBox>
             ))}
 
@@ -132,9 +168,3 @@ export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
     )
 
 }
-
-
-{/* <div key={index} className="win98-folder" onClick={() => openFolder(conversation)}>
-<div className="win98-folder-icon"></div>
-<div className="win98-folder-label">{formatDate(conversation.timestamp)}</div>
-</div> */}

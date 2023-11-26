@@ -447,6 +447,20 @@ html {
 
 }
 
+.win98-browser-window {
+  background-color: #c0c0c0;
+  border: 2px solid #000;
+  padding: 8px;
+  font-family: 'MS Sans Serif', Geneva, sans-serif;
+  max-width: 600px;
+  /* Adjust as per your layout */
+  max-height: 400px;
+  /* Adjust as per your layout */
+  margin: auto;
+}
+
+
+
 .win98-title-bar {
   background-color: #000080;
   color: white;
@@ -509,6 +523,17 @@ html {
   height: 64px;
   /* Adjust size as needed */
 }
+.win98-stuffIMade-icon {
+  /* background-image: url('../public/windows98folder.png'); */
+  /* Replace with actual path */
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 80px;
+  /* Adjust size as needed */
+  height: 64px;
+  /* Adjust size as needed */
+}
+
 
 .win98-folder-label {
   color: black;

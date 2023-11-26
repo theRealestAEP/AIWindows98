@@ -76,14 +76,14 @@ export async function POST(req: Request) {
 
     const conversationsThisMonth = await prisma.conversation.count({
         where: {
-            userId: user?.id, // Or use 'email' if that's how you reference it
+            userId: user?.id,
             timestamp: {
                 gte: startOfCurrentMonth(),
             },
         },
     });
-
-    // console.log(conversationsThisMonth)
+    console.log(startOfCurrentMonth())
+    console.log(conversationsThisMonth)
 
 
     if (conversationsThisMonth >= user?.monthlySearchLimit!) {
