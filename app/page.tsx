@@ -1,9 +1,9 @@
 import { getServerSession } from 'next-auth';
 import { authOptions } from './api/auth/[...nextauth]/route';
 import { prisma } from '@/lib/primsa'
-import { BrowserView, MobileView, isBrowser, isMobile } from 'react-device-detect';
 import Desktop from '@/components/Desktop';
 import AboutMe from '../components/aboutMe';
+
 
 export default async function Page() {
     const session = await getServerSession(authOptions);
@@ -17,17 +17,9 @@ export default async function Page() {
         }
         return (
             <div>
-                <BrowserView>
                     <AboutMe />
-                    <div className="flash-text">
-                        Login to the playground
-                    </div>
-
                     <Desktop user={user} />
-                </BrowserView>
-                <MobileView>
                     <AboutMe />
-                </MobileView>
             </div>
 
         )
