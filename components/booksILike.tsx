@@ -57,9 +57,9 @@ export default function PastSearches({ user, onClose }: PastSearchesProps) {
                                 <Image src={"/CoddlingOfAmericanMind.png"} alt={'coddling of the American Mind'} height={100} width={100} />
                             </div>
                             <div>
-                                <h1 className="book-title">Book Title</h1>
+                                <h1 className="book-title">The Coddling of the American Mind</h1>
                                 <p className="book-thoughts">
-                                    Wow, I really liked this one book called blah blah blah. It was an amazing read and had some great insights.
+                                    Title is a bit misleading in the best possible way. After I finished I felt like I had been through a dozen therapy sessions. 10/10
                                 </p>
                             </div>
                         </div>
