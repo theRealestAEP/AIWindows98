@@ -10,8 +10,8 @@ import { ZIndexProvider } from '@/components/zIndexContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Note Taker',
-  description: 'Note Taker',
+  title: 'Alex Pickett',
+  description: 'Shit about me I guess',
 }
 
 
