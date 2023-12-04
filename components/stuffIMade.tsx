@@ -95,8 +95,8 @@ export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
                     <div className="win98-window">
 
                         <div className="win98-title-bar">
-                            <span className="win98-title-text">Stuff I Made</span>
                             <div className='titleBar'>
+                            <span className="win98-title-text">Stuff I Made</span>
                                 <button onClick={handleClose} className="closeButton">X</button>
                             </div>
                         </div>

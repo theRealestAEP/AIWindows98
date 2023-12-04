@@ -59,7 +59,29 @@ export default function PastSearches({ user, onClose }: PastSearchesProps) {
                             <div>
                                 <h1 className="book-title">The Coddling of the American Mind</h1>
                                 <p className="book-thoughts">
-                                    Title is a bit misleading in the best possible way. After I finished I felt like I had been through a dozen therapy sessions. 10/10
+                                    Written by  by Greg Lukianoff and Jonathan Haidt. A great blend of current culture and REAL solutions. After I finished I felt like I had been through a dozen therapy sessions. 10/10
+                                </p>
+                            </div>
+                        </div>
+                        <div className="book-content">
+                            <div className='image-container'>
+                                <Image src={"/humblePi.png"} alt={'coddling of the American Mind'} height={100} width={100} />
+                            </div>
+                            <div>
+                                <h1 className="book-title">Humble Pi</h1>
+                                <p className="book-thoughts">
+                                    Written by Matt Parker. I fuck up often and this book made me feel better about it!
+                                </p>
+                            </div>
+                        </div>
+                        <div className="book-content">
+                            <div className='image-container'>
+                                <Image src={"/daivdAndGoliath.png"} alt={'coddling of the American Mind'} height={100} width={100} />
+                            </div>
+                            <div>
+                                <h1 className="book-title">The Coddling of the American Mind</h1>
+                                <p className="book-thoughts">
+                                    It's Malcolm Gladwell so... always well researched and well spoken. I could probably add the whole Gladwellian collection to this list honestly.
                                 </p>
                             </div>
                         </div>

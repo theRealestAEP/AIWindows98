@@ -60,13 +60,13 @@ export default function PastSearches({ user, onClose }: PastSearchesProps) {
 
     const fetchConversations = async () => {
         setLoading(true);
-        
-        if(user.id=='0'){
+
+        if (user.id == '0') {
             // setConversations('Guest - login to see history');
             setError('Guest - login to see history')
             setLoading(false);
             return;
-        }   
+        }
         try {
             const response = await fetch(`/api/getPastConvos?page=${curPage}`, {
                 method: 'GET',
@@ -88,13 +88,13 @@ export default function PastSearches({ user, onClose }: PastSearchesProps) {
     useEffect(() => {
         const fetchConversations = async () => {
             setLoading(true);
-        
-            if(user.id=='0'){
+
+            if (user.id == '0') {
                 // setConversations('Guest - login to see history');
                 setError('Guest - login to see history')
                 setLoading(false);
                 return;
-            }   
+            }
             try {
                 const response = await fetch(`/api/getPastConvos?page=${curPage}`, {
                     method: 'GET',
@@ -136,8 +136,8 @@ export default function PastSearches({ user, onClose }: PastSearchesProps) {
                     <div className="win98-window">
 
                         <div className="win98-title-bar">
-                            <span className="win98-title-text">My Computer</span>
                             <div className='titleBar'>{selectedConversation?.timestamp}
+                                <span className="win98-title-text">My Computer</span>
                                 <button onClick={handleClose} className="closeButton">X</button>
                             </div>
                         </div>
