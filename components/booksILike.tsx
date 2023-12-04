@@ -81,7 +81,7 @@ export default function PastSearches({ user, onClose }: PastSearchesProps) {
                             <div>
                                 <h1 className="book-title">The Coddling of the American Mind</h1>
                                 <p className="book-thoughts">
-                                    It's Malcolm Gladwell so... always well researched and well spoken. I could probably add the whole Gladwellian collection to this list honestly.
+                                    It is Malcolm Gladwell so... always well researched and well spoken. I could probably add the whole Gladwellian collection to this list honestly.
                                 </p>
                             </div>
                         </div>
