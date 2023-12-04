@@ -19,8 +19,11 @@ export default async function Page() {
         return (
             <div>
                 <AboutMe />
+                <BrowserView>
+
                 <Desktop user={user} />
-                <AboutMe />
+                </BrowserView>
+
             </div>
 
         )
