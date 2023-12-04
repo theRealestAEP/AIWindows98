@@ -27,13 +27,12 @@ export default function RootLayout({
       <html lang="en">
 
         <body className={inter.className}>
-          <BrowserView>
+
             <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"></link>
             <NavMenu />
             <ZIndexProvider>
               {children}
             </ZIndexProvider>
-          </BrowserView>
         </body>
       </html>
     </AuthProvider>
