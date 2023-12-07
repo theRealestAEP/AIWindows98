@@ -3,7 +3,6 @@ import { authOptions } from './api/auth/[...nextauth]/route';
 import { prisma } from '@/lib/primsa'
 import Desktop from '@/components/Desktop';
 import AboutMe from '../components/aboutMe';
-import { BrowserView } from 'react-device-detect';
 
 
 export default async function Page() {
@@ -19,10 +18,7 @@ export default async function Page() {
         return (
             <div>
                 <AboutMe />
-                <BrowserView>
-
                 <Desktop user={user} />
-                </BrowserView>
 
             </div>
 
@@ -38,9 +34,8 @@ export default async function Page() {
         return (
             <div>
                 <AboutMe />
-                <BrowserView>
                     <Desktop user={user} />
-                </BrowserView>
+ 
             </div>
         )
     }

@@ -79,7 +79,7 @@ export default function PastSearches({ user, onClose }: PastSearchesProps) {
                                 <Image src={"/daivdAndGoliath.png"} alt={'coddling of the American Mind'} height={100} width={100} />
                             </div>
                             <div>
-                                <h1 className="book-title">The Coddling of the American Mind</h1>
+                                <h1 className="book-title">David and Goliath</h1>
                                 <p className="book-thoughts">
                                     It is Malcolm Gladwell so... always well researched and well spoken. I could probably add the whole Gladwellian collection to this list honestly.
                                 </p>
