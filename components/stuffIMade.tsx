@@ -24,7 +24,7 @@ const stuffIMade = [
     {
         id: 1,
         title: "Food Analyzer",
-        contentUrl: "https://chat.openai.com/g/g-a6gcdmXYA-food-analyzer",
+        contentUrl: "https://chat.openai.com/g/g-dQ7BHeWRe-food-analyzer",
         x: 800,
         y: 200,
         isOpen: false,
