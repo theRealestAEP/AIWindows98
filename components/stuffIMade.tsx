@@ -96,8 +96,10 @@ export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
 
                         <div className="win98-title-bar">
                             <div className='titleBar'>
-                            <span className="win98-title-text">Stuff I Made</span>
-                                <button onClick={handleClose} className="closeButton">X</button>
+                                <div className='titleBar flex justify-between items-center'>
+                                    <span className="win98-title-text">Stuff I Made</span>
+                                    <button onClick={handleClose} className="closeButton">X</button>
+                                </div>
                             </div>
                         </div>
                         <div className="win98-menu-bar">
@@ -121,8 +123,8 @@ export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
                                     className="win98-folder"
                                     onClick={() => toggleWindow(item.id)}
                                 >
-                                    <div className="win98-stuffIMade-icon" 
-                                        style={{backgroundImage: `url(${item.icon})`}}
+                                    <div className="win98-stuffIMade-icon"
+                                        style={{ backgroundImage: `url(${item.icon})` }}
                                     ></div>
                                     <div className="win98-folder-label">{item.title}</div>
                                 </div>
@@ -147,9 +149,11 @@ export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
                     <div className="win98-browser-window">
 
                         <div className="win98-title-bar">
-                            <span className="win98-title-text">{item.title}</span>
                             <div className='titleBar'>
-                                <button onClick={() => toggleWindow(item.id)} className="closeButton" >X</button>
+                                <div className='titleBar flex justify-between items-center'>
+                                    <span className="win98-title-text">{item.title}</span>
+                                    <button onClick={() => toggleWindow(item.id)} className="closeButton" >X</button>
+                                </div>
                             </div>
                         </div>
                         <div className="win98-browser-window-open">
