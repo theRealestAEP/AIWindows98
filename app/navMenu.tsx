@@ -7,9 +7,9 @@ export default function NavMenu() {
 
             <nav className="win98-navbar">
                 <ul>
-                    <li>
+                    {/* <li>
                         <StartButton />
-                    </li>
+                    </li> */}
                     <li>
                         <SignInButton />
                     </li>

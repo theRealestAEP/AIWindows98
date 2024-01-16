@@ -48,6 +48,15 @@ const stuffIMade = [
         isOpen: false,
         icon: '/tangiaPixel.png'
     },
+    {
+        id: 4,
+        title: "Green Screen Remover",
+        contentUrl: "https://removegreenscreen.com",
+        x: 800,
+        y: 300,
+        isOpen: false,
+        icon: '/greenscreenremove.webp'
+    },
 ];
 
 export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
