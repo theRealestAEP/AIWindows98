@@ -27,7 +27,7 @@ const Desktop = ({ user }: any) => {
     <>
       <BrowserView>
         <div className='desktop'>
-          <DesktopIcon label="Past Deep Thought" imageSrc={searchImage} onClick={() => {
+          <DesktopIcon label="Some GPT Thing" imageSrc={searchImage} onClick={() => {
             setShowPastSearches(true)
             setShowGenerateSearch(true)
           }} />

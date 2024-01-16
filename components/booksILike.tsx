@@ -48,7 +48,7 @@ export default function PastSearches({ user, onClose }: PastSearchesProps) {
             >
                 <div className="win98-browser-window">
                     <div className="titleBar">
-                        <span className="win98-title-text">My Computer</span>
+                        <span className="win98-title-text">Some Books I Like</span>
                         <button className="closeButton" onClick={handleClose}>X</button>
                     </div>
                     <div className="win98-bookreview-window">
