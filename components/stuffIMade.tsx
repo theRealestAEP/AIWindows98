@@ -57,6 +57,15 @@ const stuffIMade = [
         isOpen: false,
         icon: '/greenscreenremove.webp'
     },
+    {
+        id: 5,
+        title: "Green Screen Remover",
+        contentUrl: "https://cardcounter.app",
+        x: 800,
+        y: 300,
+        isOpen: false,
+        icon: '/blackJack.webp'
+    },
 ];
 
 export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
