@@ -50,7 +50,7 @@ const stuffIMade = [
     },
     {
         id: 4,
-        title: "Green Screen Remover",
+        title: "Remove Green Screen",
         contentUrl: "https://removegreenscreen.com",
         x: 800,
         y: 300,
@@ -59,7 +59,7 @@ const stuffIMade = [
     },
     {
         id: 5,
-        title: "Green Screen Remover",
+        title: "Card Counter",
         contentUrl: "https://cardcounter.app",
         x: 800,
         y: 300,
