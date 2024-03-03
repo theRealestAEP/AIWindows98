@@ -27,6 +27,8 @@ const stuffIMade = [
         contentUrl: "https://chat.openai.com/g/g-dQ7BHeWRe-food-analyzer",
         x: 800,
         y: 200,
+        height: 400,
+        width: 600,
         isOpen: false,
         icon: '/foodScanner.png'
     },
@@ -36,6 +38,8 @@ const stuffIMade = [
         contentUrl: "https://dec-talk.com/",
         x: 800,
         y: 200,
+        height: 400,
+        width: 600,
         isOpen: false,
         icon: '/decTalkIcon.png'
     },
@@ -45,15 +49,19 @@ const stuffIMade = [
         contentUrl: "https://tangia.co/",
         x: 800,
         y: 300,
+        height: 400,
+        width: 600,
         isOpen: false,
         icon: '/tangiaPixel.png'
     },
     {
         id: 4,
-        title: "Remove Green Screen",
+        title: "No Green Screen",
         contentUrl: "https://removegreenscreen.com",
         x: 800,
         y: 300,
+        height: 400,
+        width: 600,
         isOpen: false,
         icon: '/greenscreenremove.webp'
     },
@@ -63,8 +71,21 @@ const stuffIMade = [
         contentUrl: "https://cardcounter.app",
         x: 800,
         y: 300,
+        height: 400,
+        width: 600,
         isOpen: false,
         icon: '/blackJack.webp'
+    },
+    {
+        id: 6,
+        title: "Chat Room",
+        contentUrl: "https://frontlink-chat-room.vercel.app/",
+        x: 800,
+        y: 300,
+        height: 600,
+        width: 800,
+        isOpen: false,
+        icon: '/chatRoom.webp'
     },
 ];
 
@@ -159,8 +180,8 @@ export default function StuffIMade({ user, onClose }: StuffIMadeProps) {
                     key={item.id}
                     x={item.x}
                     y={item.y}
-                    height={600}
-                    width={800}
+                    height={item.height}
+                    width={item.width}
                     onDrag={(newX, newY) => handleDynamicDrag(item.id, newX, newY)}
                     isResizable={false}
                 >

@@ -432,11 +432,12 @@ html {
   padding: 8px;
   padding-top: 0; /* Remove padding at the top */
   font-family: 'MS Sans Serif', Geneva, sans-serif;
-  max-width: 600px;
-  max-height: 400px;
+  max-width: 800px;
+  max-height: 1400px;
   margin: auto;
   overflow: auto;
 }
+
 
 .titleBar {
   position: sticky;
