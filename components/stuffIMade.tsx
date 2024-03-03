@@ -82,8 +82,8 @@ const stuffIMade = [
         contentUrl: "https://frontlink-chat-room.vercel.app/",
         x: 800,
         y: 300,
-        height: 600,
-        width: 800,
+        height: 400,
+        width: 600,
         isOpen: false,
         icon: '/chatRoom.webp'
     },
